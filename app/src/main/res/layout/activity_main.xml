@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_light_disabled"
+
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="64dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimaryDark"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                tools:layout_editor_absoluteX="0dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <Button
+                android:id="@+id/button"
+                style="@android:style/Widget.Holo.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Thai Gifts"
+                app:layout_constraintStart_toStartOf="parent"
+               />
+
+            <Button
+                android:id="@+id/button2"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel"
+                app:layout_constraintStart_toEndOf="@+id/button"
+               />
+
+            <Button
+                android:id="@+id/button3"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food"
+                app:layout_constraintStart_toEndOf="@+id/button2"
+                />
+
+            <Button
+                android:id="@+id/button4"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hotels"
+                app:layout_constraintStart_toEndOf="@+id/button3"
+                />
+
+            <Button
+                android:id="@+id/testlog"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="test"
+                app:layout_constraintStart_toEndOf="@+id/button3" />
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/image_item1"
+                    style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="fitCenter" />
+
+                <ImageButton
+                    android:id="@+id/image_item2"
+                    style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="fitCenter" />
+
+                <ImageButton
+                    android:id="@+id/image_item3"
+                    style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="fitCenter" />
+
+                <ImageButton
+                    android:id="@+id/image_item4"
+                    style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="fitCenter" />
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="น้ำมันมะพร้าวสกัดเย็น 1000 มิลลิลิตร" />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="น้ำดื่มอัลคาไลน์ น้ำด่าง 600 มล." />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="กระบอกน้ำไฮโดรเจน" />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="น้ำมันมะพร้าว สำหรับปรุงอาหาร 1000 มล." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="189.00 THB" />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="25.00 THB" />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="5,500.00 THB" />
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:text="189.00 THB" />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/container_btm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:text="test create " />
+    </LinearLayout>
+
+
+</LinearLayout>
+        </ScrollView>
+
+
+
+
+            <!--<EditText
+                android:id="@+id/addBox"
+                android:layout_width="257dp"
+                android:layout_height="39dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="332dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
+                app:layout_constraintHorizontal_bias="0.726"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/addButt"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/addButt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="256dp"
+                android:layout_marginTop="320dp"
+                android:text="+"
+                android:textSize="20sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ListView
+                android:id="@+id/dataView"
+                android:layout_width="331dp"
+                android:layout_height="391dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintHorizontal_bias="0.317"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addBox" />-->
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>
