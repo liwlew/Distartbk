@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText addBox;
     private Button addButt;
     private MySQLConnect mySQLCon;
-    private ListView dataListView;
+    private GridView dataListView;
     private List<String> items;
     private List<String> items2;
     private ArrayAdapter<String> adt; ///เพิ่มเข้ามาใหม่ล่าสุด
@@ -41,8 +42,8 @@ private TextView textView ;
         //item ตัวที่ส่ง
         items = mySQLCon.getData();
        // items2 = mySQLCon.getData2();
-       // adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
-       // dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
+       adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
+        dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
 
     /*   Log.d("liwlew","testbyliw----"+items);*/
        // textView.setText(items);
@@ -52,7 +53,7 @@ private TextView textView ;
     public void init(){
      //   addBox = (EditText)findViewById(R.id.addBox);
       //  addButt = (Button)findViewById(R.id.addButt);
-   //     dataListView = (ListView)findViewById(R.id.dataView);
+        dataListView = (GridView)findViewById(R.id.dataView);
 
         mySQLCon = new MySQLConnect(MainActivity.this);
     }

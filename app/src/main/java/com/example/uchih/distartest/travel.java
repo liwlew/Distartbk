@@ -113,4 +113,14 @@ public class travel extends AppCompatActivity {
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
     }
+    private void onclickall(){
+        Button next = (Button)findViewById(R.id.buttonNormal);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(travel.this,travel_detail.class);
+                startActivity(i);
+            }
+        });
+    }
 }

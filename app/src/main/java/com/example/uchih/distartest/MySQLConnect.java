@@ -77,18 +77,16 @@ public class MySQLConnect {
         String comment = "";
         String price = "";
         try {
-//            JSONObject jsonObject2 = new JSONObject(response);
+
             JSONObject jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray("result");
-//            JSONArray result2 = jsonObject2.getJSONArray("result2");
+
             for (int i = 0; i < result.length(); i++) {
                 JSONObject collegeData = result.getJSONObject(i);
-                comment = collegeData.getString("comment");
+                comment = collegeData.optString("comment");
                 list.add(comment);
 
-              /*  JSONObject collegeData2 = result2.getJSONObject(i);
-                price = collegeData2.getString("test");
-                list2.add(price);*/
+
             }
 
         } catch (JSONException e) {e.printStackTrace();}
