@@ -43,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
     private List<String> items;
     private List<String> items2;
     private ArrayAdapter<String> adt; ///เพิ่มเข้ามาใหม่ล่าสุด
+    private GridView griview;
 private TextView textView ;
     public void update(){
         //item ตัวที่ส่ง
         items = mySQLCon.getData();
        // items2 = mySQLCon.getData2();
-       adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
-        dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
+     //  adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
+     //   dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
 
     /*   Log.d("liwlew","testbyliw----"+items);*/
        // textView.setText(items);
@@ -59,7 +60,7 @@ private TextView textView ;
     public void init(){
      //   addBox = (EditText)findViewById(R.id.addBox);
       //  addButt = (Button)findViewById(R.id.addButt);
-        dataListView = (GridView)findViewById(R.id.gridview1);
+        //dataListView = (GridView)findViewById(R.id.dataView);
 
         mySQLCon = new MySQLConnect(MainActivity.this);
     }
@@ -77,7 +78,8 @@ private TextView textView ;
         init();
         update();
         //สร้างปุ่ม
-
+        griview = (GridView)findViewById(R.id.gridview1);
+        griview.setAdapter(new Efficientadapter(getApplicationContext()));
 
 
         itemclick();
@@ -210,7 +212,7 @@ private  void itemclick (){
     //*********************************************************************************************
 
 
-  /*  public class Efficientadapter extends BaseAdapter {
+    public class Efficientadapter extends BaseAdapter {
         public Context mContext;
         public LayoutInflater mInflate;
         public Efficientadapter(Context context){
@@ -260,5 +262,5 @@ private  void itemclick (){
             TextView description;
 
         }
-    }*/
+    }
 }
