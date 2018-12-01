@@ -1,5 +1,6 @@
 package com.example.uchih.distartest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 
 
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -23,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -53,7 +59,7 @@ private TextView textView ;
     public void init(){
      //   addBox = (EditText)findViewById(R.id.addBox);
       //  addButt = (Button)findViewById(R.id.addButt);
-        dataListView = (GridView)findViewById(R.id.dataView);
+        dataListView = (GridView)findViewById(R.id.gridview1);
 
         mySQLCon = new MySQLConnect(MainActivity.this);
     }
@@ -196,4 +202,63 @@ private  void itemclick (){
             bmImage.setImageBitmap(result);
         }
     }
+
+
+
+
+
+    //*********************************************************************************************
+
+
+  /*  public class Efficientadapter extends BaseAdapter {
+        public Context mContext;
+        public LayoutInflater mInflate;
+        public Efficientadapter(Context context){
+            mContext = context;
+            mInflate = LayoutInflater.from(mContext);
+        }
+
+        @Override
+        public int getCount() {
+            return 10;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View convertview, ViewGroup viewGroup) {
+            ViewHolder holder = null;
+            if(convertview ==null){
+                convertview =mInflate.inflate(R.layout.itemlist, null);
+                holder = new ViewHolder();
+                holder.title = (TextView) convertview.findViewById(R.id.txtview1);
+                holder.authorImagel=(ImageView) convertview.findViewById(R.id.imageview1);
+                convertview.setTag(holder);
+            }else{
+                //rebind widget
+                holder = (ViewHolder)convertview.getTag();
+            }
+            holder.title.setText(String.valueOf(i)+". testeiei");
+            //  holder.authorImagel.
+            String url = "http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg";
+            Glide.with(mContext).load(url).into(holder.authorImagel);
+
+            return convertview;
+        }
+        public  class  ViewHolder{
+
+            ImageView authorImagel;
+            TextView title;
+            TextView description;
+
+        }
+    }*/
 }
