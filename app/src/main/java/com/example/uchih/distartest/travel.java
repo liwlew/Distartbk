@@ -34,7 +34,7 @@ public class travel extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setBackgroundColor((Color.parseColor("#4CAF50")));
         setSupportActionBar(toolbar);
-
+        onclickall();
 
         Button next2 = (Button)findViewById(R.id.button);
         next2.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +91,7 @@ public class travel extends AppCompatActivity {
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
                     }
                 });
-                Button btn2 = (Button) findViewById(R.id.buttonNormal);
+               /* Button btn2 = (Button) findViewById(R.id.buttonNormal);
                 // Perform action on click
                 btn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -100,7 +100,7 @@ public class travel extends AppCompatActivity {
                         mMap.addMarker(new MarkerOptions().position(sydney).title("Home"));
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
                     }
-                });
+                });*/
             }
         });
 
@@ -118,7 +118,7 @@ public class travel extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(travel.this,travel_detail.class);
+                Intent i = new Intent(travel.this,tv_detail.class);
                 startActivity(i);
             }
         });

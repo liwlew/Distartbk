@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".tv_detail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btmback1"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back1"
+            android:background = "@color/common_google_signin_btn_text_dark_default"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:gravity="center"
+            android:text="วัดพระแก้ว (Wat Phra Kaew)"
+            android:textSize="34dp" />
+
+        <Button
+            android:id="@+id/btmsocial"
+            android:layout_alignParentRight="true"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:gravity="right"
+            android:background = "@color/common_google_signin_btn_text_dark_default"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="500dp"
+                android:layout_height="332dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/testmap1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="166dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tt1" />
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="166dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tt3" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tt2" />
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+
+                    android:src="@drawable/tt4" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:background="@android:color/background_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtheader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="22dp"
+                    android:text="รายละเอียด :"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="30dp"
+                    android:text="วัดพระศรีรัตนศาสดาราม หรือที่เรียกกันทั่วไปว่า วัดพระแก้ว เป็นวัดที่พระบาทสมเด็จพระพุทธยอดฟ้าจุฬาโลกมหาราชโปรดเกล้าฯ ให้สร้างขึ้นใน พ.ศ. 2325 เป็นวัดในพระบรมมหาราชวังเช่นเดียวกับวัดพระศรีสรรเพชญ์ ซึ่งเป็นวัดในพระราชวังหลวงในสมัยอยุธยา และมีพระราชประสงค์ให้วัดพระศรีรัตนศาสดารามเป็นที่ประดิษฐาน พระพุทธมหามณีรัตนปฏิมากร หรือพระแก้วมรกต พระคู่บ้านคู่เมืองของแผ่นดินสยามที่พบ ณ วัดป่าเยี้ยะ (ป่าไผ่) จังหวัดเชียงราย และเป็นสถานที่ทรงบำเพ็ญพระราชกุศล วัดพระศรีรัตนศาสดารามเป็นวัดที่ไม่มีพระสงฆ์จำพรรษาอยู่ เพราะมีแต่ส่วนพุทธาวาสไม่มีส่วนสังฆาวาส"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/txtheader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="ที่อยู่ : "
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="30dp"
+                    android:text="ถนน หน้าพระลาน แขวง พระบรมมหาราชวัง เขต พระนคร กรุงเทพมหานคร 10200"
+                    android:textSize="20dp"/>
+
+
+                <TextView
+                    android:id="@+id/txtheader3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_marginTop="10dp"
+                    android:text="ติดต่อ :  "
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="30dp"
+                    android:text=" 02 224 3290"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/txtheader4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="ข้อแนะนำ :  "
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="30dp"
+                    android:text="ไม่ควรใช้แฟลช ในถ่ายภาพจิตรกรรมฝาผนัง และไม่อนุญาตให้ถ่ายภาพภายในพระอุโบสถเด็ดขาด ฝ่าฝืนมีโทษปรับและยึดฟิล์ม/สื่อบันทึก"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

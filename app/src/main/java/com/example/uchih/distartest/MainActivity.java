@@ -48,7 +48,7 @@ private TextView textView ;
     public void update(){
         //item ตัวที่ส่ง
         items = mySQLCon.getData();
-       // items2 = mySQLCon.getData2();
+       items2 = mySQLCon.getData2();
      //  adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
      //   dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
 
@@ -117,13 +117,13 @@ private TextView textView ;
         testl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("liwlew","testbyliw----"+items);
+                Log.d("liwlew","testbyliw----"+items2);
             }
         });
 
 
 // image load url
-        DownloadImageTask task = (DownloadImageTask) new DownloadImageTask((ImageView) findViewById(R.id.image_item1))
+    /*    DownloadImageTask task = (DownloadImageTask) new DownloadImageTask((ImageView) findViewById(R.id.image_item1))
                 .execute("http://pordeeshops.com/image/cache/catalog/product1/forman/Image_6a3d794-1600x1600-200x200.jpg");
 
         DownloadImageTask task2 = (DownloadImageTask) new DownloadImageTask((ImageView) findViewById(R.id.image_item2))
@@ -131,7 +131,7 @@ private TextView textView ;
         DownloadImageTask task3 = (DownloadImageTask) new DownloadImageTask((ImageView) findViewById(R.id.image_item3))
                 .execute("http://pordeeshops.com/image/cache/catalog/product1/forman/Image_7f3d196-1600x1600-200x200.jpg");
         DownloadImageTask task4 = (DownloadImageTask) new DownloadImageTask((ImageView) findViewById(R.id.image_item4))
-                .execute("http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg");
+                .execute("http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg");*/
          if(items.size()!=0){
            imbtm();
             }
@@ -157,14 +157,14 @@ private TextView textView ;
     }
 
 private  void itemclick (){
-    ImageButton next9 = (ImageButton)findViewById(R.id.image_item1);
+   /* ImageButton next9 = (ImageButton)findViewById(R.id.image_item1);
     next9.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent i = new Intent(MainActivity.this,item.class);
             startActivity(i);
         }
-    });
+    });*/
 }
 
     @Override
@@ -222,7 +222,7 @@ private  void itemclick (){
 
         @Override
         public int getCount() {
-            return 10;
+            return items.size();
         }
 
         @Override
@@ -241,22 +241,20 @@ private  void itemclick (){
             if(convertview ==null){
                 convertview =mInflate.inflate(R.layout.itemlist, null);
                 holder = new ViewHolder();
-                holder.title = (TextView) convertview.findViewById(R.id.txtview1);
+                holder.description = (TextView) convertview.findViewById(R.id.txtview2);
                 holder.authorImagel=(ImageView) convertview.findViewById(R.id.imageview1);
                 convertview.setTag(holder);
             }else{
                 //rebind widget
                 holder = (ViewHolder)convertview.getTag();
             }
-            holder.title.setText(String.valueOf(i)+". testeiei");
-            //  holder.authorImagel.
-            String url = "http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg";
+            holder.description.setText(items2.get(i).substring(0,(items2.get(i).length())-2)+" บาท");
+      //      String url = "http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg";
+            String url = "http://pordeeshops.com/image/"+items.get(i);
             Glide.with(mContext).load(url).into(holder.authorImagel);
-
             return convertview;
         }
         public  class  ViewHolder{
-
             ImageView authorImagel;
             TextView title;
             TextView description;

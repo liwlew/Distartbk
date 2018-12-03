@@ -72,6 +72,7 @@ public class MySQLConnect {
 
         return list;
     }
+    public List<String> getData2() {    return list2; }
 
     private void showJSON(String response) {
         String comment = "";
@@ -83,8 +84,14 @@ public class MySQLConnect {
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject collegeData = result.getJSONObject(i);
-                comment = collegeData.optString("comment");
-                list.add(comment);
+                if(collegeData.optString("comment")!=""){
+                    comment = collegeData.optString("comment");
+                    list.add(comment);
+                }
+                if(collegeData.optString("test")!=""){
+                    price = collegeData.optString("test");
+                    list2.add(price);
+                }
 
 
             }

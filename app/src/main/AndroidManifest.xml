@@ -8,8 +8,8 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,7 +43,8 @@
             android:name=".testmap"
             android:label="@string/title_activity_testmap" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".item"></activity>
+        <activity android:name=".item" />
+        <activity android:name=".tv_detail"></activity>
     </application>
 
 </manifest>
