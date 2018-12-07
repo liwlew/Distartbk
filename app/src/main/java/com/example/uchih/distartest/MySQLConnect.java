@@ -106,27 +106,6 @@ public class MySQLConnect {
 
 
 
-    /*public void sentData(String value){ //methos ใหม่ล่าสุด อัพเดทข้อมูลขึ้นฐานข้อมูล
-        StrictMode.enableDefaults(); //จำกัดเวอร์เวอร์ชั่นแอนดรอยด์ที่ใช้ฟีเจอร์นี้ได้
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
-        try{
-            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            nameValuePairs.add(new BasicNameValuePair("isAdd","true")); //ข้อมูลที่จะส่งไป ตัวนี้เป็นแค่ตัวจุดชนวน
-            nameValuePairs.add(new BasicNameValuePair("comment", value)); //ข้อมูลที่จะส่งไป ตัวนี้เป็นข้อมูลที่เราเขียน
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(URL + SENT_URL);//Change IP to you WebServer
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
-            httpclient.execute(httppost);
-
-            Toast.makeText(main, "Completed.", Toast.LENGTH_LONG).show();
-        }catch(Exception e){
-            Toast.makeText(main, e.getMessage().toString(), Toast.LENGTH_LONG).show();
-        }
-    }*/
 
 
 

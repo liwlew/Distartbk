@@ -194,8 +194,10 @@
                 <LinearLayout
                     android:id="@+id/container_btm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+
                     android:orientation="vertical">
+
 
                     <EditText
                         android:id="@+id/addBox"
@@ -205,21 +207,10 @@
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:text="Name"
+
                         app:layout_constraintHorizontal_bias="0.726"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/addButt"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <!--    <ListView
-            android:id="@+id/dataView"
-            android:layout_width="331dp"
-            android:layout_height="391dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintHorizontal_bias="0.317"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addBox" />-->
 
                     <GridView
                         android:id="@+id/gridview1"
