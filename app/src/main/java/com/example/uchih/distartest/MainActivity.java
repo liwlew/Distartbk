@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //item ตัวที่ส่ง
        //  items = mySQLCon.getData();
        // items2 = mySQLCon.getData2();
-        //  adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
+          adt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items); //เพิ่มเข้ามาใหม่ล่าสุด
         //   dataListView.setAdapter(adt); //ทดแทนกันโดยเรียกใช้ adt แทน
 
         /*   Log.d("liwlew","testbyliw----"+items);*/

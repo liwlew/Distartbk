@@ -9,10 +9,16 @@
     android:title="Search"
     app:showAsAction="always">@color/blue_dark_bg</item>
 
+    <item
+        android:id="@+id/edit_text"
+        android:title="Edittext"
+        app:showAsAction="always"
+        />
 
+<!--
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
 </menu>

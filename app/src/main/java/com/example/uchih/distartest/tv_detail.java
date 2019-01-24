@@ -13,6 +13,7 @@ public class tv_detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_detail);
         clickbtm();
+
     }
     private void clickbtm(){
         ImageButton next1 = (ImageButton)findViewById(R.id.btmback1);
@@ -24,4 +25,5 @@ public class tv_detail extends AppCompatActivity {
             }
         });
     }
+
 }

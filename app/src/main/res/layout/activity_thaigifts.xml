@@ -2,95 +2,163 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_top"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
     tools:context=".thaigifts">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <WebView
+        android:id="@+id/weviewvdo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+    <VideoView
+        android:id="@+id/vdo_on"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+
+    <LinearLayout
+        android:id="@+id/view_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimaryDark"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pordee Expoess"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="24dp" />
+
+                <EditText
+                    android:id="@+id/edit_txt_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="400dp"
+                    android:ems="20"
+                    android:gravity="right"
+                    android:background="@drawable/login_edittext"
+                    android:inputType="text"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                    android:hint="Seach product"/>
+
+                <Button
+                    android:id="@+id/btm_enter_search"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/btn_cart"
+                   />
+            </android.support.v7.widget.Toolbar>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="@color/cardview_light_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button"
+                style="@android:style/Widget.Holo.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thai Gifts"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="52dp" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="52dp" />
+
+            <Button
+                android:id="@+id/button3"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="52dp" />
+
+            <Button
+                android:id="@+id/button4"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hotels"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="52dp" />
+
+            <Button
+                android:layout_marginLeft="850dp"
+                android:id="@+id/btmtest"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Staff Login"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="52dp" />
+
+
+            <!-- <Button
+            android:id="@+id/testsearch"
+            style="@android:style/Widget.Holo.Light.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test search"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="52dp" />-->
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorPrimaryDark"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            tools:layout_editor_absoluteX="0dp" />
+            android:background="@color/bgcolor">
 
+            <GridView
+                android:id="@+id/gridview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="0dp"
+                android:clickable="true"
+                android:columnWidth="250dp"
+                android:gravity="center"
+                android:horizontalSpacing="5dp"
+                android:numColumns="4"
+                android:stretchMode="spacingWidthUniform"
+                android:verticalSpacing="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/button"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thai Gifts"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="52dp" />
-
-        <Button
-            android:id="@+id/button2"
-            style="@android:style/Widget.Holo.Light.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Travel"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="52dp" />
-
-        <Button
-            android:id="@+id/button3"
-            style="@android:style/Widget.Holo.Light.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Food"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="52dp" />
-
-        <Button
-            android:id="@+id/button4"
-            style="@android:style/Widget.Holo.Light.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hotels"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="52dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <GridView
-            android:id="@+id/gridview1"
-            android:layout_width="match_parent"
-            android:layout_height="559dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="0dp"
-            android:clickable="true"
-            android:columnWidth="200dp"
-            android:gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="4"
-            android:stretchMode="spacingWidthUniform"
-            android:verticalSpacing="20dp"
-            />
-    </LinearLayout>
-
-</LinearLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>
