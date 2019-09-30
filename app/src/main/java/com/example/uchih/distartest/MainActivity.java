@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        downloadJSON("http://seoprojectmarketings.com/android/get_test.php");
+        downloadJSON("https://mannature.com/test/get_test.php");
 
 
 
@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         }
         DownloadJSON getJSON = new DownloadJSON();
         getJSON.execute();
-        Log.d("liwlew2","testbyliw----"+getJSON);
+//        Log.d("liwlew2","testbyliw----"+getJSON);
     }
 
     private void loadIntoListView(String json) throws JSONException {
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             holder.description.setText(price[i].substring(0,(price[i].length())-2)+" บาท");
             holder.title.setText(name[i]);
             //      String url = "http://pordeeshops.com/image/cache/catalog/product1/forman/Image_a71ecfc-1600x1600-200x200.jpg";
-            String url = "http://pordeeshops.com/image/"+image[i];
+            String url = "https://kaaidee.com/image/"+image[i];
             Glide.with(mContext).load(url).into(holder.authorImagel);
             return convertview;
         }

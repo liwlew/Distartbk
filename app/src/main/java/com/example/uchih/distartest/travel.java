@@ -4,19 +4,25 @@ package com.example.uchih.distartest;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,6 +39,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -53,6 +60,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class travel extends AppCompatActivity {
@@ -79,94 +87,103 @@ public class travel extends AppCompatActivity {
    private ListView listview;
     private  int sizesql;
     private GridView griview;
+    private VideoView vdoon;
+    private  LinearLayout viewall;
+    private   String urlvdo ="";
+    private  String languageToLoad ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         languageToLoad = datamysql.language;
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_travel);
         Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("");
         //toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setBackgroundColor((Color.parseColor("#4CAF50")));
         setSupportActionBar(toolbar);
-        //----------------------cart-----------------
-        Button entercart = (Button)findViewById(R.id.btm_enter_search);
-        entercart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(travel.this,addcart.class);
-                startActivity(i);
-            }
-        });
-        ///--------------------------------------------------------------------------
-
         list_location = new ArrayList<>();
+        CountDownTimer cdt = new CountDownTimer(5000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Tick
+            }
+            public void onFinish() {
+                //----------------------cart-----------------
+                Button entercart = (Button)findViewById(R.id.btm_enter_search);
+                entercart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(travel.this,addcart.class);
+                        startActivity(i);
+                    }
+                });
+                ///--------------------------------------------------------------------------
 //---------------------------------------------------------------------search
+                final EditText editText_search = (EditText)findViewById(R.id.edit_txt_search);
+                editText_search.setOnKeyListener(new View.OnKeyListener() {
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        // If the event is a key-down event on the "enter" button
+                        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                                (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            // Perform action on key press
+                            datamysql.Search = editText_search.getText().toString();
+                            Intent i = new Intent(travel.this,search.class);
+                            startActivity(i);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                ///------------------------cart--------------------
+                entercart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
-        final EditText editText_search = (EditText)findViewById(R.id.edit_txt_search);
-        editText_search.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    datamysql.Search = editText_search.getText().toString();
-                    Intent i = new Intent(travel.this,search.class);
-                    startActivity(i);
-                    return true;
-                }
-                return false;
-            }
-        });
+                        Intent i = new Intent(travel.this,addcart.class);
+                        startActivity(i);
+                    }
+                });
+                ///--------------------------------------------------------------------------
+                Button next2 = (Button)findViewById(R.id.button);
+                next2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(travel.this,thaigifts.class);
+                        startActivity(i);
+                    }
+                });
+                Button next3 = (Button)findViewById(R.id.button3);
+                next3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(travel.this,food.class);
+                        startActivity(i);
+                    }
+                });
+                Button next4 = (Button)findViewById(R.id.button4);
+                next4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(travel.this,hotel.class);
+                        startActivity(i);
+                    }
+                });
+                Button test = (Button)findViewById(R.id.btmtest);
+                test.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(travel.this,login_guide.class);
+                        startActivity(i);
+                    }
+                });
 
-        ///------------------------cart--------------------
-        entercart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(travel.this,addcart.class);
-                startActivity(i);
             }
-        });
-        ///--------------------------------------------------------------------------
-
-        onclickall();
-
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
-
-        Button next2 = (Button)findViewById(R.id.button);
-        next2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(travel.this,thaigifts.class);
-                startActivity(i);
-            }
-        });
-        Button next3 = (Button)findViewById(R.id.button3);
-        next3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(travel.this,food.class);
-                startActivity(i);
-            }
-        });
-        Button next4 = (Button)findViewById(R.id.button4);
-        next4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(travel.this,hotel.class);
-                startActivity(i);
-            }
-        });
-        Button test = (Button)findViewById(R.id.btmtest);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(travel.this,login_guide.class);
-                startActivity(i);
-            }
-        });
+        }.start();
      /*   Button testcart = (Button)findViewById(R.id.btmtestcart);
         testcart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,8 +192,10 @@ public class travel extends AppCompatActivity {
                 startActivity(i);
             }
         });*/
-
-
+        onclickall();
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
         Button google = (Button)findViewById(R.id.button6);
         google.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +203,7 @@ public class travel extends AppCompatActivity {
                 openGoogleMap(sydney , sydney);
             }
         });
+
 
 
 
@@ -218,7 +238,7 @@ public class travel extends AppCompatActivity {
 
         listview= (ListView) findViewById(R.id.listview_photo);
         griview = (GridView) findViewById(R.id.Listviewtravel);
-         lv_dteail = (RelativeLayout) findViewById(R.id.Listviewdetail);
+        lv_dteail = (RelativeLayout) findViewById(R.id.Listviewdetail);
         griview_image = (ListView) findViewById(R.id.Listviewimage);
         ln_image = (LinearLayout) findViewById(R.id.linearimage);
         ln_frist = (LinearLayout) findViewById(R.id.ln_frist);
@@ -231,15 +251,15 @@ public class travel extends AppCompatActivity {
                 sydney = new LatLng(v1[position], v2[position]);
                 mMap.addMarker(new MarkerOptions().position(sydney).title(name[position]));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
-
-
-
                 position_image = position;
+
+
 
                 TextView txtfrist = (TextView)findViewById(R.id.txt_frist);
                 txtfrist.setText(name[position]);
                 ImageView imagefrist = (ImageView)findViewById(R.id.image_frist);
                 Picasso.get().load(image[position]).into(imagefrist);
+                sethide();
                 /*travel.DownloadImageTask task = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_frist))
                         .execute(image[position]);*/
                /* griview.setVisibility(View.GONE);
@@ -297,7 +317,6 @@ public class travel extends AppCompatActivity {
         backtodetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 lv_dteail.setVisibility(View.GONE);
                 ln_image.setVisibility(View.GONE);
                 ln_frist.setVisibility(View.VISIBLE);
@@ -305,15 +324,115 @@ public class travel extends AppCompatActivity {
             }
         });
 
-        
+        //---------------------vdo-------------------
+        urlvdo = "https://seoprojectmarketings.com/android/vdo/pordee.mp4" ;
+        viewall =(LinearLayout)findViewById(R.id.view_all);
+        vdoon= (VideoView)findViewById(R.id.vdo_on);
+        Uri uri = Uri.parse(urlvdo);
+        vdoon.setVideoURI(uri);
+        vdoon.start();
+        vdoon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
+            @Override
+            public void onPrepared( MediaPlayer mp) {
+                mp.setLooping(true);
+                vdoon.setOnTouchListener(new View.OnTouchListener()
+                {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        datamysql.check_vdo_on = 0;
+                        //mp.setVolume(0, 0);
+                        viewall.setVisibility(View.VISIBLE);
+                        return false;
+                    }
+                });
 
+            }
+        });
+
+        //---------------------------------------------
+        imageclickfirst();
+        setlang();
+        num_cart();
         setcolor();
+        language();
 //-----------------------------------------------------------------------------
-        downloadJSON("http://seoprojectmarketings.com/android/travel.php");
-        downloadJSON2("http://seoprojectmarketings.com/android/travel_image.php");
+        downloadJSON("https://mannature.com/test/travel.php");
+        downloadJSON2("https://mannature.com/test/travel_image.php");
     }
 
+    public void language(){
+        final Button chiha =(Button)findViewById(R.id.btm_lang_china);
+        final  Button eng =(Button)findViewById(R.id.btm_lang_eng);
+        final Button thai =(Button)findViewById(R.id.btm_lang_thai);
+
+        thai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 2 ;
+                setlang();
+                datamysql.language="th_TH";
+//                Log.d("travel","testbyliw----"+datamysql.language);
+            }
+        });
+
+        eng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 1 ;
+                datamysql.language="eng_ENG";
+                setlang();
+            }
+        });
+
+        chiha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 3 ;
+                datamysql.language="zh_CN";
+                setlang();
+
+            }
+        });
+    }
+    public void sethide(){
+        TextView txt_selete = (TextView)findViewById(R.id.txt_selete);
+        ImageView image_selete = (ImageView)findViewById(R.id.image_selete);
+        TextView txt_frist = (TextView)findViewById(R.id.txt_frist);
+        ImageView image_frist = (ImageView)findViewById(R.id.image_frist);
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        Button btn_first =(Button)findViewById(R.id.btn_first);
+
+        txt_selete.setVisibility(View.GONE);
+        image_selete.setVisibility(View.GONE);
+
+        txt_frist.setVisibility(View.VISIBLE);
+        image_frist.setVisibility(View.VISIBLE);
+        ratingBar.setVisibility(View.VISIBLE);
+        btn_first.setVisibility(View.VISIBLE);
+
+        btn_first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView txtfrist = (TextView)findViewById(R.id.txtname);
+                txtfrist.setText(name[position_image]);
+
+                TextView txtdetail = (TextView)findViewById(R.id.txtdetail);
+
+                txtdetail.setText("      "+detail[position_image]);
+                list_location.clear();
+                findimage();
+
+                mMapFragment.getView().setVisibility(View.GONE);
+                lv_dteail.setVisibility(View.VISIBLE);
+                ln_frist.setVisibility(View.GONE);
+                ln_image.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+
+    }
     public  void setcolor(){
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rat1);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -424,33 +543,42 @@ public class travel extends AppCompatActivity {
 
 
         JSONArray jsonArray = new JSONArray(json);
-        sizesql = jsonArray.length();
-        image = new String[sizesql];
-        v1 = new double[sizesql];
-        v2 = new double[sizesql];
-        name = new String[sizesql];
+        if(jsonArray != null) {
+            sizesql = jsonArray.length();
+            image = new String[sizesql];
+            v1 = new double[sizesql];
+            v2 = new double[sizesql];
+            name = new String[sizesql];
 
-        detail =new String[sizesql];
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject obj = jsonArray.getJSONObject(i);
-
-            image[i] =  obj.getString("location_image" );
-            name[i] = obj.getString("name");
-            v1[i] = Double.parseDouble(obj.getString("v"));
-            v2[i] = Double.parseDouble(obj.getString("v1"));
-            detail[i]=obj.getString("detail");
+            detail = new String[sizesql];
+            int lang = 0;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                if (obj.getString("language").equals("th")) {
+                    lang = 2;
+                } else if (obj.getString("language").equals("eng")) {
+                    lang = 1;
+                } else if (obj.getString("language").equals("cn")) {
+                    lang = 3;
+                }
+                if (datamysql.langued == lang) {
+                    image[i] = obj.getString("location_image");
+                    name[i] = obj.getString("name");
+                    v1[i] = Double.parseDouble(obj.getString("v"));
+                    v2[i] = Double.parseDouble(obj.getString("v1"));
+                    detail[i] = obj.getString("detail");
+                }
+            }
+            griview.setAdapter(new travel.Efficientadapter(getApplicationContext()));
         }
-        griview.setAdapter(new travel.Efficientadapter(getApplicationContext()));
-
    /*     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stocks);
         listvv.setAdapter(arrayAdapter);*/
 //----------------------------------
-        ImageView imagfrist = (ImageView)findViewById(R.id.image_frist);
+
+       /* ImageView imagefrist = (ImageView)findViewById(R.id.image_frist);
+        Picasso.get().load(image[0]).into(imagefrist);
         TextView txtfrist = (TextView)findViewById(R.id.txt_frist);
-        travel.DownloadImageTask task = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_frist))
-                .execute(image[0]);
-        txtfrist.setText(name[0]);
+        txtfrist.setText(name[0]);*/
 //-------------------------------------
     }
 
@@ -465,8 +593,6 @@ public class travel extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
             }
-
-
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
@@ -504,21 +630,27 @@ public class travel extends AppCompatActivity {
 
 
         JSONArray jsonArray = new JSONArray(json);
-          sizesql2 = jsonArray.length();
+        sizesql2 = jsonArray.length();
         id_travel_image = new String[sizesql2];
         location2 = new String[sizesql2];
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            id_travel_image[i] =  obj.getString("id_travel" );
-            location2[i] =  obj.getString("location_image2" );
-            if(id_travel_image[i].equals("1")){
-                list_location.add(obj.getString("location_image2" ));
+
+
+
+                id_travel_image[i] =  obj.getString("id_travel" );
+                location2[i] =  obj.getString("location_image2" );
+                if(id_travel_image[i].equals("1")){
+                    list_location.add(obj.getString("location_image2" ));
+
             }
+
+
 
         }
 
-        imageclickfirst();
+
         listview.setAdapter(new travel.Efficientadapter2(getApplicationContext()));
 //-------------------------------------
     }
@@ -584,7 +716,6 @@ public class travel extends AppCompatActivity {
             mContext = context;
             mInflate = LayoutInflater.from(mContext);
         }
-
         @Override
         public int getCount() {
             return list_location.size();
@@ -615,7 +746,6 @@ public class travel extends AppCompatActivity {
             }
             String url =list_location.get(i);
             Glide.with(mContext).load(url).into(holder.authorImagel);
-
             return convertview;
         }
         public  class  ViewHolder{
@@ -627,7 +757,7 @@ public class travel extends AppCompatActivity {
         }
     }
     public  void  imageclickfirst(){
-        ImageView imagfrist = (ImageView)findViewById(R.id.image_frist);
+        /*ImageView imagfrist = (ImageView)findViewById(R.id.image_frist);
         imagfrist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -640,25 +770,13 @@ public class travel extends AppCompatActivity {
                 txtdetail.setText("      "+detail[position_image]);
                 list_location.clear();
                 findimage();
-/*
-               travel.DownloadImageTask task2 = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_1))
-                        .execute(location2[ a1[0]]);
-                travel.DownloadImageTask task3 = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_2))
-                        .execute(location2[ a1[1]]);
-                travel.DownloadImageTask task4 = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_3))
-                        .execute(location2[ a1[2]]);
-                travel.DownloadImageTask task5 = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_4))
-                        .execute(location2[ a1[3]]);
-                travel.DownloadImageTask task6 = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.image_5))
-                        .execute(location2[ a1[4]]);*/
 
-//----------------------------------------------------------------------------------
                 mMapFragment.getView().setVisibility(View.GONE);
                 lv_dteail.setVisibility(View.VISIBLE);
                 ln_frist.setVisibility(View.GONE);
                 ln_image.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
     public  void findimage(){
         //----------------------------------------------find image-------------------
@@ -666,15 +784,110 @@ public class travel extends AppCompatActivity {
         int a=0;
         listview.setAdapter(new travel.Efficientadapter2(getApplicationContext()));
         for(int i = 0;i<id_travel_image.length;i++){
-
             //       Log.d("travel","testbyliw---- yes"+ id_travel_image.length+"  [[ "+id_travel_image[i] );
             if(id_travel_image[i].equals((position_image+1)+"")){
                 list_location.add(location2[i]);
                 /*a1[a]=i;
                 a++;*/
+            }
+        }
+    }
 
+    //-----------------------------vdo-----------------------
+    public static final long DISCONNECT_TIMEOUT = 30000; // 5 min = 5 * 60 * 1000 ms
+    private Handler disconnectHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            // todo
+            return true;
+        }
+    });
+    private Runnable disconnectCallback = new Runnable() {
+        @Override
+        public void run() {
+            // Perform any required operation on disconnect
+            if(datamysql.check_vdo_on==0){
+
+                viewall.setVisibility(View.GONE);
+                //   vdoon.setVisibility(View.VISIBLE);
+                datamysql.check_vdo_on=1;
             }
 
+
+        }
+    };
+
+    public void resetDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+        disconnectHandler.postDelayed(disconnectCallback, DISCONNECT_TIMEOUT);
+    }
+
+    public void stopDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+    }
+    @Override
+    public void onUserInteraction(){
+        resetDisconnectTimer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        resetDisconnectTimer();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopDisconnectTimer();
+    }
+    //-------------------------------------------------------
+    public  void num_cart(){
+        TextView txtnum_cart = (TextView)findViewById(R.id.txt_cart);
+        //error
+        if(datamysql.numcart_>0){
+            txtnum_cart.setVisibility(View.VISIBLE);
+            txtnum_cart.setText(datamysql.numcart_+"");
+        }
+    }
+//-----------------
+    public  void setlang(){
+        final Button chiha =(Button)findViewById(R.id.btm_lang_china);
+        final  Button eng =(Button)findViewById(R.id.btm_lang_eng);
+        final Button thai =(Button)findViewById(R.id.btm_lang_thai);
+        final EditText txt_search =(EditText)findViewById(R.id.edit_txt_search);
+        final Button thaigift =(Button)findViewById(R.id.button);
+        final Button travel =(Button)findViewById(R.id.button2);
+        final Button food =(Button)findViewById(R.id.button3);
+        final Button hotel =(Button)findViewById(R.id.button4);
+        downloadJSON("http://seoprojectmarketings.com/android/travel.php");
+        //android:hint="Seach product"
+        if (datamysql.langued == 1) {
+            chiha.setBackgroundResource(R.drawable.chiha_bw);
+            thai.setBackgroundResource(R.drawable.thai_bw);
+            eng.setBackgroundResource(R.drawable.eng_color);
+            txt_search.setHint("Search product");
+            thaigift.setText("Thai Gifts");
+            travel.setText("travel");
+            food.setText("food");
+            hotel.setText("hotel");
+        }else if(datamysql.langued == 2){
+            chiha.setBackgroundResource(R.drawable.chiha_bw);
+            thai.setBackgroundResource(R.drawable.thai_color);
+            eng.setBackgroundResource(R.drawable.eng_bw);
+            txt_search.setHint("ค้นหาสินค้า");
+            thaigift.setText("ของขวัญไทย");
+            travel.setText("ท่องเที่ยว");
+            food.setText("อาหาร");
+            hotel.setText("โรงแรม");
+        }else  if(datamysql.langued == 3){
+            chiha.setBackgroundResource(R.drawable.chiha_color);
+            thai.setBackgroundResource(R.drawable.thai_bw);
+            eng.setBackgroundResource(R.drawable.eng_bw);
+            txt_search.setHint("搜索产品");
+            thaigift.setText("泰国礼物");
+            travel.setText("旅行");
+            food.setText("餐饮");
+            hotel.setText("旅馆");
         }
     }
 }

@@ -50,7 +50,9 @@
         <activity android:name=".list_cart_test" />
         <activity android:name=".search" />
         <activity android:name=".item_search" />
-        <activity android:name=".webview"></activity>
+        <activity android:name=".webview" />
+        <activity android:name=".image_wechat" />
+        <activity android:name=".category"></activity>
     </application>
 
 </manifest>

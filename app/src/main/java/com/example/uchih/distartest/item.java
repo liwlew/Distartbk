@@ -7,11 +7,16 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,11 +24,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +53,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +65,9 @@ public class item extends AppCompatActivity {
     private ListView listvv ;
     private List<NameValuePair> params;
   private    TextView txt ;
+    private VideoView vdoon;
+    private LinearLayout viewall;
+    private   String urlvdo ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,13 +112,27 @@ public class item extends AppCompatActivity {
 
 
 if(!datamysql.image_g.equals("")){
-   // item.DownloadImageTask task = (item.DownloadImageTask) new item.DownloadImageTask((ImageView) findViewById(R.id.imageView))
-    //        .execute("http://pordeeshops.com/image/"+datamysql.image_g);
 
- ImageView image = (ImageView)findViewById(R.id.imageView);
-        Picasso.get().load("http://pordeeshops.com/image/"+datamysql.image_g).into(image);
-   /* ImageView image = (ImageView)findViewById(R.id.imageView);
-        new DownloadImageTask(image).execute("http://pordeeshops.com/image/"+datamysql.image_g);*/
+
+
+
+
+    try {
+
+        item.DownloadImageTask task = (item.DownloadImageTask) new item.DownloadImageTask((ImageView) findViewById(R.id.imageView))
+                .execute("https://kaaidee.com/image/"+datamysql.image_g);
+
+
+//        ImageView image = (ImageView)findViewById(R.id.imageView);
+//        Picasso.get().load("http://kaaidee.com/image/"+datamysql.image_g).into(image);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+
+    }
+
+//    ImageView image = (ImageView)findViewById(R.id.imageView);
+//        new DownloadImageTask(image).execute("https://kaaidee.com/image/"+datamysql.image_g);
 
 }
 
@@ -121,7 +146,33 @@ if(!datamysql.image_g.equals("")){
         TextView txtprice = (TextView)findViewById(R.id.txt_price);
         txtprice.setText(datamysql.pricr.substring(0,datamysql.pricr.length()-2)+" THB");
 //        listvv = (ListView)findViewById(R.id.listtest);
+//---------------------vdo-------------------
+        urlvdo = "http://seoprojectmarketings.com/android/vdo/pordee.mp4" ;
+        viewall =(LinearLayout)findViewById(R.id.view_all);
+        vdoon= (VideoView)findViewById(R.id.vdo_on);
+        Uri uri = Uri.parse(urlvdo);
+        vdoon.setVideoURI(uri);
+        vdoon.start();
+        vdoon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
+            @Override
+            public void onPrepared( MediaPlayer mp) {
+                mp.setLooping(true);
+                vdoon.setOnTouchListener(new View.OnTouchListener()
+                {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        datamysql.check_vdo_on = 0;
+                        //mp.setVolume(0, 0);
+                        viewall.setVisibility(View.VISIBLE);
+                        return false;
+                    }
+                });
+
+            }
+        });
+
+        //---------------------------------------------
 
 
         //downloadJSON("http://seoprojectmarketings.com/android/item_sql.php");
@@ -138,25 +189,16 @@ if(!datamysql.image_g.equals("")){
             }
         });
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
-
-
         datamysql.list_cart = new ArrayList<String>();
         datamysql.list_productid = new ArrayList<String>();
-
-
-
         if(datamysql.arrayck) {
             datamysql.list_cart_proid = new ArrayList<String>();
             datamysql.list_cart_image = new ArrayList<String>();
             datamysql.list_cart_name = new ArrayList<String>();
             datamysql.list_number = new ArrayList<Integer>();
             datamysql.list_cart_price = new ArrayList<>();
+            datamysql.list_cart_check = new ArrayList<>();
         }
-
-
-
-
-
 
         Button next2 = (Button)findViewById(R.id.btm_addcart);
         next2.setOnClickListener(new View.OnClickListener() {
@@ -186,10 +228,12 @@ if(!datamysql.image_g.equals("")){
                     datamysql.list_cart_proid.add(datamysql.productid);
                     datamysql.list_cart_name.add(datamysql.name_g);
                     datamysql.list_cart_price.add(datamysql.pricr);
+                    datamysql.list_cart_check.add(true);
                     datamysql.arrayck=false;
-
+                    datamysql.numcart_ = datamysql.numcart_ +  1;
                     Toast.makeText(item.this, "Add Cart Success", Toast.LENGTH_LONG).show();
                 }
+
               //  Log.d("liwlew","itemtest----"+datamysql.list_cart_image.size());
              //   Log.d("liwlew","itemtest----"+datamysql.list_image.get(0));
 
@@ -203,29 +247,77 @@ if(!datamysql.image_g.equals("")){
     }
 
 
+
+    //-----------------------------vdo-----------------------
+    public static final long DISCONNECT_TIMEOUT = 30000; // 5 min = 5 * 60 * 1000 ms
+    private Handler disconnectHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            // todo
+            return true;
+        }
+    });
+    private Runnable disconnectCallback = new Runnable() {
+        @Override
+        public void run() {
+            // Perform any required operation on disconnect
+            if(datamysql.check_vdo_on==0){
+
+                viewall.setVisibility(View.GONE);
+                //   vdoon.setVisibility(View.VISIBLE);
+                datamysql.check_vdo_on=1;
+            }
+
+
+        }
+    };
+
+    public void resetDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+        disconnectHandler.postDelayed(disconnectCallback, DISCONNECT_TIMEOUT);
+    }
+
+    public void stopDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+    }
+    @Override
+    public void onUserInteraction(){
+        resetDisconnectTimer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        resetDisconnectTimer();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopDisconnectTimer();
+    }
+    //-------------------------------------------------------
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
+
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
-            Bitmap bmp = null;
+            Bitmap mIcon11 = null;
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
-                bmp = BitmapFactory.decodeStream(in);
+                mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
-            return bmp;
+            return mIcon11;
         }
+
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
     }
-
-
-
 }

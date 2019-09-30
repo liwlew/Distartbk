@@ -36,7 +36,7 @@ public class MySQLConnect {
     private final Activity main;
     private List<String> list;
     private List<String> list2;
-    public String URL = "http://seoprojectmarketings.com", GET_URL = "/android/get_post.php?status=1", SENT_URL = "android/sent_post.php";
+    public String URL = "https://mannature.com", GET_URL = "/test/get_post.php?status=1", SENT_URL = "test/sent_post.php";
     //public String URL = "127.0.0.1/"; หากรันบน emulator ให้ใช้ IP 10.0.2.2
 
     public MySQLConnect(){

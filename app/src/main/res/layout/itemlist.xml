@@ -21,6 +21,7 @@ card_view:cardCornerRadius="20dp">
         android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
+        android:background="@drawable/ripple_effect"
         >
 
         <ImageView
@@ -42,37 +43,37 @@ card_view:cardCornerRadius="20dp">
             android:layout_marginTop="227dp"
             android:gravity="center"
             android:text="test"
+            android:maxLength="50"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-
             />
 
         <TextView
             android:id="@+id/txtview2"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/txtview1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="267dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="test"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <TextView
             android:id="@+id/txtaddcart"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtview2"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"
+            android:layout_marginTop="307dp"
             android:layout_marginBottom="10dp"
-            android:gravity="center"
             android:background="@drawable/stoke"
-            android:textColor="@color/colorPrimary"
+            android:gravity="center"
             android:text="Add Cart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>
 </RelativeLayout>

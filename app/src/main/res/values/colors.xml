@@ -8,5 +8,5 @@
     <color name="orage">#EC7200</color>
     <color name="gray_500">#9E9E9E</color>
     <color name="white">#ffffff</color>
-
+    <color name="dark">#000000</color>
 </resources>

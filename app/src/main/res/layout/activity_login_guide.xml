@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login_guide">
+
     <LinearLayout
+        android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_marginTop="225dp"
+
         android:layout_marginLeft="450dp"
         android:layout_height="match_parent"
         android:focusable="true"
+
         android:focusableInTouchMode="true"
         android:orientation="horizontal">
         <LinearLayout
@@ -41,8 +45,6 @@
                 tools:layout_editor_absoluteX="442dp"
                 tools:layout_editor_absoluteY="323dp" />
 
-
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,6 +62,7 @@
                 android:layout_width="220dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
+                android:inputType="textPassword"
              />
             <LinearLayout
                 android:layout_width="220dp"
@@ -77,17 +80,424 @@
         android:id="@+id/btnlogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
+
         android:text="ล็อกอิน" />
 
-  <!--  <Button
-        android:id="@+id/button2"
+    <Button
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="กลับหน้าแรก" />-->
+        android:text="กลับหน้าแรก" />
 </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/layout_idcar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_back_idcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="back" />
+        <Button
+            android:id="@+id/btn__home_idcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1150dp"
+            android:layout_marginTop="20dp"
+            android:text="Main Page" />
+
+        <EditText
+            android:id="@+id/edt_idcar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="580dp"
+            android:layout_marginTop="406dp" />
+
+        <TextView
+            android:id="@+id/btn_go_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="622dp"
+            android:layout_marginTop="282dp"
+           />
+        <Button
+            android:id="@+id/btn_chage_idcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="586dp"
+            android:layout_marginTop="320dp"
+            android:text="Change" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_customer"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_back_cus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="back" />
+        <Button
+            android:id="@+id/btn__home_cus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1150dp"
+            android:layout_marginTop="20dp"
+            android:text="Main Page" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="328dp"
+            android:layout_marginTop="184dp"
+            android:text="location"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/edt_location"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="445dp"
+            android:layout_marginTop="147dp" />
+        <Button
+            android:id="@+id/btn_checkin"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="380dp"
+            android:layout_marginTop="280dp"
+            android:text="Check In" />
+
+        <Button
+            android:id="@+id/btn_checkout"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="646dp"
+            android:layout_marginTop="280dp"
+            android:text="Check Out" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_login_car"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_back_lgidcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="back" />
+        <Button
+            android:id="@+id/btn__home_lgidcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1150dp"
+            android:layout_marginTop="20dp"
+            android:text="Main Page" />
+
+        <EditText
+            android:id="@+id/edt_id"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="580dp"
+            android:layout_marginTop="262dp" />
+
+        <Button
+            android:id="@+id/btn_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="586dp"
+            android:layout_marginTop="320dp"
+            android:text="submit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_manu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_back_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="back" />
+
+        <Button
+            android:id="@+id/btn__home_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1150dp"
+            android:layout_marginTop="20dp"
+            android:text="Main Page" />
+
+        <Button
+            android:id="@+id/btn_regiser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="586dp"
+            android:layout_marginTop="260dp"
+            android:text="Register" />
+
+        <Button
+            android:id="@+id/btn_idcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="586dp"
+            android:layout_marginTop="320dp"
+            android:text="ID Car" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_admin"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="294dp">
+
+        <Button
+            android:id="@+id/btn_back_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="back" />
+
+        <Button
+            android:id="@+id/btn__home_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1150dp"
+            android:layout_marginTop="20dp"
+            android:text="Main Page" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="194dp"
+            android:gravity="center"
+            android:text="Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="442dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="194dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="244dp"
+            android:gravity="center"
+            android:text="Surname"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="452dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_surname"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="244dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="294dp"
+            android:gravity="center"
+            android:text="Username"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="452dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_user"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="294dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="344dp"
+            android:gravity="center"
+            android:text="Phonenumber"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="452dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="344dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="394dp"
+            android:gravity="center"
+            android:text="Pass"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="452dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_pass"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="394dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="497dp"
+            android:layout_marginTop="444dp"
+            android:gravity="center"
+            android:text="Confirm Pass"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="452dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <EditText
+            android:id="@+id/edit_conpass"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="600dp"
+            android:layout_marginTop="444dp"
+            tools:layout_editor_absoluteX="530dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="666dp"
+            android:layout_marginTop="514dp"
+            android:text="finish" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

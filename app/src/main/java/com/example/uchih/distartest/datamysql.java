@@ -11,6 +11,8 @@ public class datamysql {
         public  static  String location_g= "";
         public  static  String pricr="";
 
+
+        public static String language = "zh_CN";
         public  static ArrayList<String> list_cart;
         public  static ArrayList<Integer> list_number;
         public  static ArrayList<String> list_name;
@@ -21,6 +23,7 @@ public class datamysql {
     public  static  ArrayList<String> list_cart_proid;
     public static  ArrayList<String> list_cart_name;
     public static  ArrayList<String> list_cart_price;
+    public static  ArrayList<Boolean> list_cart_check;
 
     public  static String Search="";
 
@@ -61,5 +64,11 @@ public class datamysql {
     public  static  String tel_c="";
     public  static  String email_c="";
 
+    public static int check_vdo_on = 1;
+    public  static  String vdoview="";
+    public  static   int check_bank =0;
+    public  static   String image_wechat ="";
+    public  static  int numcart_=0 ;
 
+    public static  int langued= 2;
 }

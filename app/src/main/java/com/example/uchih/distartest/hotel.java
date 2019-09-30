@@ -9,14 +9,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,6 +38,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -79,6 +85,10 @@ public class hotel extends AppCompatActivity {
     private ListView listview;
     private  int sizesql;
     private GridView griview;
+
+    private   VideoView vdoon;
+    private  LinearLayout viewall;
+    private   String urlvdo ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,85 +98,8 @@ public class hotel extends AppCompatActivity {
         //toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setBackgroundColor((Color.parseColor("#4CAF50")));
         setSupportActionBar(toolbar);
-        //----------------------cart-----------------
-        Button entercart = (Button)findViewById(R.id.btm_enter_search);
-        entercart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(hotel.this,addcart.class);
-                startActivity(i);
-            }
-        });
-        ///--------------------------------------------------------------------------
-
         list_location = new ArrayList<>();
-//---------------------------------------------------------------------search
 
-        final EditText editText_search = (EditText)findViewById(R.id.edit_txt_search);
-        editText_search.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    datamysql.Search = editText_search.getText().toString();
-                    Intent i = new Intent(hotel.this,search.class);
-                    startActivity(i);
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        ///------------------------cart--------------------
-        entercart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(hotel.this,addcart.class);
-                startActivity(i);
-            }
-        });
-        ///--------------------------------------------------------------------------
-
-        onclickall();
-
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
-
-        Button next2 = (Button)findViewById(R.id.button);
-        next2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(hotel.this,thaigifts.class);
-                startActivity(i);
-            }
-        });
-        Button next3 = (Button)findViewById(R.id.button3);
-        next3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(hotel.this,food.class);
-                startActivity(i);
-            }
-        });
-        Button next4 = (Button)findViewById(R.id.button4);
-        next4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(hotel.this,hotel.class);
-                startActivity(i);
-            }
-        });
-        Button test = (Button)findViewById(R.id.btmtest);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(hotel.this,login_guide.class);
-                startActivity(i);
-            }
-        });
      /*   Button testcart = (Button)findViewById(R.id.btmtestcart);
         testcart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +109,94 @@ public class hotel extends AppCompatActivity {
             }
         });*/
 
+        setlang();
+        onclickall();
+        num_cart();
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+        CountDownTimer cdt = new CountDownTimer(5000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Tick
+            }
+
+            public void onFinish() {
+                //----------------------cart-----------------
+                Button entercart = (Button)findViewById(R.id.btm_enter_search);
+                entercart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(hotel.this,addcart.class);
+                        startActivity(i);
+                    }
+                });
+                ///--------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------search
+
+                final EditText editText_search = (EditText)findViewById(R.id.edit_txt_search);
+                editText_search.setOnKeyListener(new View.OnKeyListener() {
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        // If the event is a key-down event on the "enter" button
+                        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                                (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            // Perform action on key press
+                            datamysql.Search = editText_search.getText().toString();
+                            Intent i = new Intent(hotel.this,search.class);
+                            startActivity(i);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
+                ///------------------------cart--------------------
+                entercart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent i = new Intent(hotel.this,addcart.class);
+                        startActivity(i);
+                    }
+                });
+                ///--------------------------------------------------------------------------
+
+
+                Button next2 = (Button)findViewById(R.id.button);
+                next2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(hotel.this,thaigifts.class);
+                        startActivity(i);
+                    }
+                });
+                Button next3 = (Button)findViewById(R.id.button3);
+                next3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(hotel.this,food.class);
+                        startActivity(i);
+                    }
+                });
+                Button next4 = (Button)findViewById(R.id.button2);
+                next4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(hotel.this,travel.class);
+                        startActivity(i);
+                    }
+                });
+                Button test = (Button)findViewById(R.id.btmtest);
+                test.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(hotel.this,login_guide.class);
+                        startActivity(i);
+                    }
+                });
+            }
+        }.start();
 
         Button google = (Button)findViewById(R.id.button6);
         google.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +218,7 @@ public class hotel extends AppCompatActivity {
                 // Add a marker in Sydney and move the camera
 
                 sydney = new LatLng(13.7516435, 100.4927041);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("วัดพระแก้ว"));
+                mMap.addMarker(new MarkerOptions().position(sydney).title(""));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12));
 
              /*   ImageButton btn1 = (ImageButton) findViewById(R.id.imageButton2);
@@ -235,13 +256,13 @@ public class hotel extends AppCompatActivity {
 
 
                 position_image = position;
-
+                sethide();
                 TextView txtfrist = (TextView)findViewById(R.id.txt_frist);
                 txtfrist.setText(name[position]);
                 ImageView imagefrist = (ImageView)findViewById(R.id.image_frist);
                 Picasso.get().load(image[position]).into(imagefrist);
-               /* hotel.DownloadImageTask task = (hotel.DownloadImageTask) new hotel.DownloadImageTask((ImageView) findViewById(R.id.image_frist))
-                        .execute(image[position]);*/
+//                hotel.DownloadImageTask task = (hotel.DownloadImageTask) new hotel.DownloadImageTask((ImageView) findViewById(R.id.image_frist))
+//                        .execute(image[position]);
                /* griview.setVisibility(View.GONE);
                 travel.DownloadImageTask task = (travel.DownloadImageTask) new travel.DownloadImageTask((ImageView) findViewById(R.id.imagedetail))
                         .execute(image[position]);
@@ -304,14 +325,40 @@ public class hotel extends AppCompatActivity {
                 mMapFragment.getView().setVisibility(View.VISIBLE);
             }
         });
+//---------------------vdo-------------------
+        urlvdo = "https://seoprojectmarketings.com/android/vdo/pordee.mp4" ;
+        viewall =(LinearLayout)findViewById(R.id.view_all);
+        vdoon= (VideoView)findViewById(R.id.vdo_on);
+        Uri uri = Uri.parse(urlvdo);
+        vdoon.setVideoURI(uri);
+        vdoon.start();
+        vdoon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared( MediaPlayer mp) {
+                mp.setLooping(true);
+                vdoon.setOnTouchListener(new View.OnTouchListener()
+                {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        datamysql.check_vdo_on = 0;
+                        //mp.setVolume(0, 0);
+                        viewall.setVisibility(View.VISIBLE);
+                        return false;
+                    }
+                });
+
+            }
+        });
+
+        //---------------------------------------------
 
 
-
-
+        language();
         setcolor();
 //-----------------------------------------------------------------------------
-        downloadJSON("http://seoprojectmarketings.com/android/food.php");
-        downloadJSON2("http://seoprojectmarketings.com/android/travel_image.php");
+        downloadJSON("https://mannature.com/test/hotel.php");
+        downloadJSON2("https://mannature.com/test/hotel_image.php");
     }
 
     public  void setcolor(){
@@ -424,33 +471,42 @@ public class hotel extends AppCompatActivity {
 
 
         JSONArray jsonArray = new JSONArray(json);
-        sizesql = jsonArray.length();
-        image = new String[sizesql];
-        v1 = new double[sizesql];
-        v2 = new double[sizesql];
-        name = new String[sizesql];
+        if(jsonArray != null) {
+            sizesql = jsonArray.length();
+            image = new String[sizesql];
+            v1 = new double[sizesql];
+            v2 = new double[sizesql];
+            name = new String[sizesql];
 
-        detail =new String[sizesql];
+            detail = new String[sizesql];
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject obj = jsonArray.getJSONObject(i);
-
-            image[i] =  obj.getString("location_image" );
-            name[i] = obj.getString("name");
-            v1[i] = Double.parseDouble(obj.getString("v"));
-            v2[i] = Double.parseDouble(obj.getString("v1"));
-            detail[i]=obj.getString("detail");
+            int lang = 0;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                if (obj.getString("language").equals("th")) {
+                    lang = 2;
+                } else if (obj.getString("language").equals("eng")) {
+                    lang = 1;
+                } else if (obj.getString("language").equals("cn")) {
+                    lang = 3;
+                }
+                if (datamysql.langued == lang) {
+                    image[i] = obj.getString("location_image");
+                    name[i] = obj.getString("name");
+                    v1[i] = Double.parseDouble(obj.getString("v"));
+                    v2[i] = Double.parseDouble(obj.getString("v1"));
+                    detail[i] = obj.getString("detail");
+                }
+            }
+            griview.setAdapter(new hotel.Efficientadapter(getApplicationContext()));
         }
-        griview.setAdapter(new hotel.Efficientadapter(getApplicationContext()));
-
    /*     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stocks);
         listvv.setAdapter(arrayAdapter);*/
 //----------------------------------
-        ImageView imagfrist = (ImageView)findViewById(R.id.image_frist);
+     /*   ImageView imagefrist = (ImageView)findViewById(R.id.image_frist);
+        Picasso.get().load(image[0]).into(imagefrist);
         TextView txtfrist = (TextView)findViewById(R.id.txt_frist);
-        hotel.DownloadImageTask task = (hotel.DownloadImageTask) new hotel.DownloadImageTask((ImageView) findViewById(R.id.image_frist))
-                .execute(image[0]);
-        txtfrist.setText(name[0]);
+        txtfrist.setText(name[0]);*/
 //-------------------------------------
     }
 
@@ -510,7 +566,7 @@ public class hotel extends AppCompatActivity {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            id_travel_image[i] =  obj.getString("id_travel" );
+            id_travel_image[i] =  obj.getString("id_hotel" );
             location2[i] =  obj.getString("location_image2" );
             if(id_travel_image[i].equals("1")){
                 list_location.add(obj.getString("location_image2" ));
@@ -518,7 +574,7 @@ public class hotel extends AppCompatActivity {
 
         }
 
-        imageclickfirst();
+      //  imageclickfirst();
         listview.setAdapter(new hotel.Efficientadapter2(getApplicationContext()));
 //-------------------------------------
     }
@@ -626,6 +682,75 @@ public class hotel extends AppCompatActivity {
             TextView total;
         }
     }
+    public void language(){
+        final Button chiha =(Button)findViewById(R.id.btm_lang_china);
+        final  Button eng =(Button)findViewById(R.id.btm_lang_eng);
+        final Button thai =(Button)findViewById(R.id.btm_lang_thai);
+
+        thai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 2 ;
+                setlang();
+            }
+        });
+
+        eng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 1 ;
+
+                setlang();
+            }
+        });
+
+        chiha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datamysql.langued = 3 ;
+                setlang();
+            }
+        });
+    }
+    public void sethide(){
+        TextView txt_selete = (TextView)findViewById(R.id.txt_selete);
+        ImageView image_selete = (ImageView)findViewById(R.id.image_selete);
+
+        TextView txt_frist = (TextView)findViewById(R.id.txt_frist);
+        ImageView image_frist = (ImageView)findViewById(R.id.image_frist);
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+        Button btn_first =(Button)findViewById(R.id.btn_first);
+
+        txt_selete.setVisibility(View.GONE);
+        image_selete.setVisibility(View.GONE);
+
+        txt_frist.setVisibility(View.VISIBLE);
+        image_frist.setVisibility(View.VISIBLE);
+        ratingBar.setVisibility(View.VISIBLE);
+        btn_first.setVisibility(View.VISIBLE);
+
+        btn_first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView txtfrist = (TextView)findViewById(R.id.txtname);
+                txtfrist.setText(name[position_image]);
+
+                TextView txtdetail = (TextView)findViewById(R.id.txtdetail);
+
+                txtdetail.setText("      "+detail[position_image]);
+                list_location.clear();
+                findimage();
+
+                mMapFragment.getView().setVisibility(View.GONE);
+                lv_dteail.setVisibility(View.VISIBLE);
+                ln_frist.setVisibility(View.GONE);
+                ln_image.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+
+    }
     public  void  imageclickfirst(){
         ImageView imagfrist = (ImageView)findViewById(R.id.image_frist);
         imagfrist.setOnClickListener(new View.OnClickListener() {
@@ -675,6 +800,107 @@ public class hotel extends AppCompatActivity {
 
             }
 
+        }
+    }
+
+    //-----------------------------vdo-----------------------
+    public static final long DISCONNECT_TIMEOUT = 30000; // 5 min = 5 * 60 * 1000 ms
+    private Handler disconnectHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            // todo
+            return true;
+        }
+    });
+    private Runnable disconnectCallback = new Runnable() {
+        @Override
+        public void run() {
+            // Perform any required operation on disconnect
+            if(datamysql.check_vdo_on==0){
+
+                viewall.setVisibility(View.GONE);
+                //   vdoon.setVisibility(View.VISIBLE);
+                datamysql.check_vdo_on=1;
+            }
+
+
+        }
+    };
+
+    public void resetDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+        disconnectHandler.postDelayed(disconnectCallback, DISCONNECT_TIMEOUT);
+    }
+
+    public void stopDisconnectTimer(){
+        disconnectHandler.removeCallbacks(disconnectCallback);
+    }
+    @Override
+    public void onUserInteraction(){
+        resetDisconnectTimer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        resetDisconnectTimer();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopDisconnectTimer();
+    }
+    //-------------------------------------------------------
+    public  void num_cart(){
+        TextView txtnum_cart = (TextView)findViewById(R.id.txt_cart);
+        //error
+        if(datamysql.numcart_>0){
+            txtnum_cart.setVisibility(View.VISIBLE);
+            txtnum_cart.setText(datamysql.numcart_+"");
+        }
+    }
+    //----------------
+
+    public  void setlang(){
+        final Button chiha =(Button)findViewById(R.id.btm_lang_china);
+        final  Button eng =(Button)findViewById(R.id.btm_lang_eng);
+        final Button thai =(Button)findViewById(R.id.btm_lang_thai);
+
+        final EditText txt_search =(EditText)findViewById(R.id.edit_txt_search);
+        final Button thaigift =(Button)findViewById(R.id.button);
+        final Button travel =(Button)findViewById(R.id.button2);
+        final Button food =(Button)findViewById(R.id.button3);
+        final Button hotel =(Button)findViewById(R.id.button4);
+        downloadJSON("https://mannature.com/test/hotel.php");
+        //android:hint="Seach product"
+        if (datamysql.langued == 1) {
+            chiha.setBackgroundResource(R.drawable.chiha_bw);
+            thai.setBackgroundResource(R.drawable.thai_bw);
+            eng.setBackgroundResource(R.drawable.eng_color);
+            txt_search.setHint("Search product");
+            thaigift.setText("Thai Gifts");
+            travel.setText("travel");
+            food.setText("food");
+            hotel.setText("hotel");
+
+        }else if(datamysql.langued == 2){
+            chiha.setBackgroundResource(R.drawable.chiha_bw);
+            thai.setBackgroundResource(R.drawable.thai_color);
+            eng.setBackgroundResource(R.drawable.eng_bw);
+            txt_search.setHint("ค้นหาสินค้า");
+            thaigift.setText("ของขวัญไทย");
+            travel.setText("ท่องเที่ยว");
+            food.setText("อาหาร");
+            hotel.setText("โรงแรม");
+        }else  if(datamysql.langued == 3){
+            chiha.setBackgroundResource(R.drawable.chiha_color);
+            thai.setBackgroundResource(R.drawable.thai_bw);
+            eng.setBackgroundResource(R.drawable.eng_bw);
+            txt_search.setHint("搜索产品");
+            thaigift.setText("泰国礼物");
+            travel.setText("旅行");
+            food.setText("餐饮");
+            hotel.setText("旅馆");
         }
     }
 }
